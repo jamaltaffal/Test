@@ -38,7 +38,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@168.119.254.41<< 'EOF'
             cd ~/jamal
             npm install
-          EOF
+         
 
       # Step 7: Start the app on the server (optionally, if you want to run the app immediately)
       - name: Start the app on the server
