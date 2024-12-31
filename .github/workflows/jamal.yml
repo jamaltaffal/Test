@@ -25,6 +25,30 @@ jobs:
       - name: Install dependencies
         run: npm install # Only necessary if your file requires any dependencies (e.g., via package.json)
 
-      # Run the JavaScript file
-      - name: Runtest
-        run: node helloemad.js
+       # Step 4: Set up SSH to the server
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Step 5: Deploy to the server (copy files)
+      - name: Copy files to server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p ~/jamal"
+          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:~/jamal
+
+      # Step 6: Install dependencies on the server (in the 'jamal' directory)
+      - name: Install dependencies on the server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd ~/jamal
+            npm install
+          EOF
+
+      # Step 7: Start the app on the server (optionally, if you want to run the app immediately)
+      - name: Start the app on the server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd ~/jamal
+            nohup node helloEmad.js > output.log 2>&1 &
+          EOF
