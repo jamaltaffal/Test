@@ -44,6 +44,6 @@ jobs:
       - name: Start the app on the server
         run: |
           ssh -o StrictHostKeyChecking=no root@168.119.254.41<< 'EOF'
-            cd ~/jamal
+            cd ~/jamal/Test
             nohup node helloEmad.js > output.log 2>&1 &
           EOF
