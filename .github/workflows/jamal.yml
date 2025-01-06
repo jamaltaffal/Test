@@ -41,6 +41,6 @@ jobs:
               npm start
             else
               echo "No start script found, running default command."
-              node your-entry-file.js  # Replace with the correct file if no start script exists
+              node helloemad.js  # Replace with the correct file if no start script exists
             fi
           EOF
