@@ -36,6 +36,7 @@ jobs:
         run: |
             ssh -o StrictHostKeyChecking=no root@168.119.254.41 << 'EOF'
             cd ~/jamal/Test
+            git pull origin main
             npm install
             npm start &
             EOF
