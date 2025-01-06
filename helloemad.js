@@ -1,10 +1,19 @@
-// app.js
+// Import the built-in HTTP module
+const http = require('http');
 
-// Log a greeting message to the console
-console.log("Hello Emad");
+// Define the port to listen on
+const port = 3000;
 
-// Log the port number to the console (e.g., for a web server)
-const port = 3000; // Example port number
-console.log(`Server is running on port: ${port}`);
+// Create the HTTP server
+const server = http.createServer((req, res) => {
+  // Set the response HTTP header
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
 
+  // Send a response to the client
+  res.end('Hello from Emad!');
+});
 
+// Start the server and listen on the specified port and IP
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
+});
