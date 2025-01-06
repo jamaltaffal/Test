@@ -34,9 +34,8 @@ jobs:
       # Install dependencies on the server (in the 'jamal' directory)
       - name: Install dependencies on the server
         run: |
-          ssh -o StrictHostKeyChecking=no root@168.119.254.41 << 'EOF'
+            ssh -o StrictHostKeyChecking=no root@168.119.254.41 << 'EOF'
             cd ~/jamal/Test
             npm install
-            npm start
-           
-          EOF
+            npm start &
+            EOF
