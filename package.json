@@ -1,17 +1,10 @@
 {
   "name": "my_app",
   "version": "1.0.0",
-  "description": "A simple Node.js app",
-  "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node helloemad.js"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "author": "Emad",
-  "license": "ISC"
-}
-
+  "dependencies": 
+  {
+    "express":"4.17.1"
+  }
