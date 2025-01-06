@@ -37,10 +37,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@168.119.254.41 << 'EOF'
             cd ~/jamal/Test
             npm install
-            if [ -f package.json ] && grep -q '"start"' package.json; then
-              npm start
-            else
-              echo "No start script found, running default command."
-              node helloemad.js  # Replace with the correct file if no start script exists
-            fi
+            npm start
+           
           EOF
