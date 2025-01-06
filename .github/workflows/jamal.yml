@@ -25,18 +25,22 @@ jobs:
       - name: Install dependencies
         run: npm install # Only necessary if your file requires any dependencies (e.g., via package.json)
 
-       # Step 4: Set up SSH to the server
+      # Set up SSH to the server
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.testkey }}
-      
 
-      # Step 6: Install dependencies on the server (in the 'jamal' directory)
+      # Install dependencies on the server (in the 'jamal' directory)
       - name: Install dependencies on the server
         run: |
           ssh -o StrictHostKeyChecking=no root@168.119.254.41 << 'EOF'
             cd ~/jamal/Test
             npm install
-            npm start 
+            if [ -f package.json ] && grep -q '"start"' package.json; then
+              npm start
+            else
+              echo "No start script found, running default command."
+              node your-entry-file.js  # Replace with the correct file if no start script exists
+            fi
           EOF
