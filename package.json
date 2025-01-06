@@ -1,8 +1,17 @@
 {
-    "name" : "my_app",
-    "version" : "1.0",
-    "dependencies": {
-        "express" : "4.18.2"
-    }
-    
+  "name": "my_app",
+  "version": "1.0.0",
+  "description": "A simple Node.js app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Emad",
+  "license": "ISC"
 }
+
